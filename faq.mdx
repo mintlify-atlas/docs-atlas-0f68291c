@@ -1,0 +1,58 @@
+---
+title: "FAQ"
+description: "Answers to frequently asked questions about VRCX."
+---
+
+<AccordionGroup>
+  <Accordion title="Is VRCX against VRChat's terms of service?">
+    No. VRCX is an external tool that uses the official VRChat API. It does not modify the game in any way — it is not a mod, a cheat, or any other form of game modification. It uses the API responsibly to provide its features.
+
+    To see VRChat's official stance on third-party API usage, check the `#faq` channel in the VRChat Discord server.
+  </Accordion>
+
+  <Accordion title="Is VRCX endorsed by VRChat?">
+    No. VRCX is an independent, community-built project and is not affiliated with or endorsed by VRChat Inc. VRChat and all associated properties are trademarks or registered trademarks of VRChat Inc.
+  </Accordion>
+
+  <Accordion title="Is VRCX free?">
+    Yes. VRCX is free and open source, released under the [MIT license](https://github.com/vrcx-team/VRCX/blob/master/LICENSE). You can use it, modify it, and contribute to it freely.
+  </Accordion>
+
+  <Accordion title="Does VRCX work on macOS or Linux?">
+    Yes, with some limitations. VRCX provides an AppImage release for Linux and a DMG release for macOS. The VR overlay may have limited functionality on these platforms compared to Windows.
+
+    See the [Running on Linux](/troubleshooting/linux) guide for step-by-step instructions.
+  </Accordion>
+
+  <Accordion title="How do I report a bug?">
+    Open an issue on the [VRCX GitHub Issues page](https://github.com/vrcx-team/VRCX/issues). Include as much detail as possible: your operating system, VRCX version, steps to reproduce, and any relevant error messages.
+  </Accordion>
+
+  <Accordion title="Does VRCX support two-factor authentication?">
+    Yes. VRCX fully supports VRChat's two-factor authentication. You will be prompted to enter your 2FA code when logging in, just as you would in the VRChat client.
+  </Accordion>
+
+  <Accordion title="Can VRCX run at startup?">
+    Yes. You can configure VRCX to launch automatically when your computer starts. Go to **Settings → System** and enable the startup option.
+  </Accordion>
+
+  <Accordion title="What data does VRCX store locally?">
+    VRCX stores the following data locally on your machine:
+
+    - **Activity log** — friend events, game log entries, and session history stored in a SQLite database. This database can grow up to 8 GB for users with large friends lists.
+    - **Screenshot metadata** — world and location data embedded in or associated with your in-game screenshots.
+    - **Settings** — your VRCX configuration and preferences.
+
+    No data is sent to any VRCX server. All storage is local to your device.
+  </Accordion>
+
+  <Accordion title="How do I update VRCX?">
+    VRCX includes a built-in auto-updater. When a new version is available, you will be notified inside the app and can update with one click.
+
+    You can also download the latest release manually from the [GitHub Releases page](https://github.com/vrcx-team/VRCX/releases/latest). Beta and nightly builds are available via **Settings → System → Change build**.
+  </Accordion>
+
+  <Accordion title="How many friends can VRCX handle?">
+    VRCX is designed to perform well for users with **1,000 to 4,000 friends**. Performance for very large friends lists is a core design consideration, and the underlying database is built to handle up to 8 GB of stored data.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,58 @@
+---
+title: "Installation"
+description: "Download and install VRCX on Windows, Linux, or macOS."
+---
+
+<Tabs>
+  <Tab title="Windows">
+    Windows is the primary supported platform for VRCX. The installer bundles everything you need.
+
+    ## System requirements
+
+    - Windows 10 or Windows 11
+    - .NET 9 runtime (bundled in the installer — no separate download required)
+
+    ## Install VRCX
+
+    <Steps>
+      <Step title="Download the installer">
+        Go to the [VRCX releases page](https://github.com/vrcx-team/VRCX/releases/latest) and download **VRCX_Setup.exe**.
+      </Step>
+      <Step title="Run the installer">
+        Double-click **VRCX_Setup.exe** and follow the on-screen prompts. The installer handles the .NET 9 runtime automatically.
+      </Step>
+      <Step title="Launch VRCX">
+        Once installation completes, launch VRCX from your desktop shortcut or Start menu. See the [quick start guide](/quickstart) to log in and get oriented.
+      </Step>
+    </Steps>
+
+    ## Nightly and beta builds
+
+    If you want access to the latest unreleased features, you can switch to a nightly build:
+
+    - **In-app:** Open **Settings → System → Change build** and select the nightly channel.
+    - **Direct download:** Visit [vrcx.app/github/nightly](https://vrcx.app/github/nightly) to download the latest nightly build.
+
+    <Note>
+      Nightly builds are updated frequently and may contain bugs. Use them if you want to test new features early.
+    </Note>
+  </Tab>
+  <Tab title="Linux">
+    VRCX can run on Linux, but setup requires additional steps compared to Windows.
+
+    <Info>
+      See the full [Linux troubleshooting guide](/troubleshooting/linux) for detailed instructions, including required system libraries and known issues.
+    </Info>
+
+    A Linux AppImage (`VRCX_Version.AppImage`) is produced alongside the Windows installer and is available on the [releases page](https://github.com/vrcx-team/VRCX/releases/latest).
+  </Tab>
+  <Tab title="macOS">
+    VRCX can run on macOS, but setup requires additional steps compared to Windows.
+
+    <Info>
+      See the [Linux and macOS guide](https://github.com/vrcx-team/VRCX/wiki/Running-VRCX-on-Linux) on the VRCX wiki for detailed instructions.
+    </Info>
+
+    A macOS DMG (`VRCX_Version.dmg`) is produced alongside the Windows installer and is available on the [releases page](https://github.com/vrcx-team/VRCX/releases/latest).
+  </Tab>
+</Tabs>

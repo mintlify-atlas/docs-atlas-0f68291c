@@ -1,0 +1,81 @@
+---
+title: "Search"
+description: "Find users, worlds, avatars, and groups with global search or instant client-side fuzzy search. Paste IDs and URLs for direct access."
+---
+
+VRCX provides two complementary search modes: **Global Search**, which queries the VRChat API, and **Quick Search**, which runs entirely on the client against locally cached data.
+
+---
+
+## Global search
+
+Global search lets you look up any public entity on VRChat — not just people or things in your friend list.
+
+<CardGroup cols={2}>
+  <Card title="Users" icon="user">
+    Search for any VRChat user by display name. Open their profile directly from the results.
+  </Card>
+  <Card title="Worlds" icon="earth-americas">
+    Find public worlds by name. View world details, instance lists, and favorites without launching VRChat.
+  </Card>
+  <Card title="Avatars" icon="masks-theater">
+    Search for public avatars by name to view their details.
+  </Card>
+  <Card title="Groups" icon="users">
+    Look up VRChat groups by name and browse their details and members.
+  </Card>
+</CardGroup>
+
+### Searching by ID or URL
+
+You can paste a VRChat ID or URL directly into the search bar to jump straight to a specific entity without knowing its name.
+
+Supported formats include:
+
+- VRChat profile URLs — e.g., `https://vrchat.com/home/user/usr_...`
+- World URLs — e.g., `https://vrchat.com/home/world/wrld_...`
+- Avatar IDs — e.g., `avtr_...`
+- Group IDs — e.g., `grp_...`
+- Any raw `usr_`, `wrld_`, `avtr_`, or `grp_` prefixed ID
+
+VRCX detects the entity type from the ID prefix and opens the correct dialog automatically.
+
+<Tip>
+  Pasting a URL copied from the VRChat website or the VRChat client into the search bar is the fastest way to pull up a profile or world when you already have the link.
+</Tip>
+
+---
+
+## Quick search
+
+Quick Search is an instant, client-side fuzzy search that runs without any API calls. It searches across data already loaded in VRCX.
+
+<CardGroup cols={2}>
+  <Card title="Friends" icon="user-group">
+    Fuzzy-match across all friends by display name. Results update as you type.
+  </Card>
+  <Card title="Favorite worlds and avatars" icon="star">
+    Search your saved favorite worlds and avatars instantly.
+  </Card>
+  <Card title="Groups" icon="users-rectangle">
+    Search groups you are a member of or have recently viewed.
+  </Card>
+</CardGroup>
+
+Quick Search is accessible from the search bar in the VRCX sidebar. Because it operates on locally cached data, results appear immediately without waiting for a network response.
+
+<Note>
+  Quick Search only covers data VRCX has already loaded (your friends, your favorites, your groups). To search the full VRChat catalog, use Global Search.
+</Note>
+
+---
+
+## Choosing the right search mode
+
+| Situation | Recommended mode |
+|---|---|
+| Looking up a friend you already have | Quick Search |
+| Finding a user you are not friends with | Global Search |
+| You have a VRChat URL or ID | Global Search (paste the ID) |
+| Browsing your saved favorite worlds | Quick Search |
+| Discovering new public worlds | Global Search |

@@ -1,0 +1,80 @@
+---
+title: "Auto-launch"
+description: "VRCX can automatically start other applications when VRChat launches and stop them when VRChat closes, and restart VRChat itself when it crashes."
+---
+
+VRCX monitors the VRChat process and can automatically manage companion applications alongside it. There are two related features:
+
+- **App auto-launch** — start and stop other apps in sync with VRChat
+- **Auto-restart on crash** — detect VRChat crashes and relaunch it, rejoining your last instance
+
+## App auto-launch
+
+When VRChat starts, VRCX launches any applications you have configured. When VRChat closes, VRCX can optionally stop those applications too.
+
+### Supported shortcut types
+
+<CardGroup cols={2}>
+  <Card title="Windows shortcuts (.lnk)" icon="file">
+    Standard Windows shortcut files pointing to any executable. VRCX identifies these by their file header signature.
+  </Card>
+  <Card title="Steam games (.url)" icon="steam">
+    URL shortcut files with a `steam://rungameid/` URL. VRCX parses the Steam app ID and launches the game via Steam.
+  </Card>
+</CardGroup>
+
+### Launch folders
+
+VRCX uses three shortcut folders to control which apps start in which mode:
+
+| Folder | When shortcuts here run |
+| ------ | ---------------------- |
+| `startup/` | Every time VRChat starts, regardless of mode |
+| `startup/desktop/` | Only when VRChat is running in **desktop** mode (SteamVR not active) |
+| `startup/vr/` | Only when VRChat is running with **SteamVR** active |
+
+These folders are located inside the VRCX app data directory.
+
+### Configuring auto-launch
+
+<Steps>
+  <Step title="Open VRCX settings">
+    Click the gear icon or navigate to **Settings** in the VRCX menu bar.
+  </Step>
+  <Step title="Enable auto-launch">
+    Find the **Auto-launch Apps** section and toggle it on.
+  </Step>
+  <Step title="Add your shortcuts">
+    Place Windows shortcut files (`.lnk`) or Steam URL shortcuts (`.url`) into the appropriate startup folder:
+    - For apps that always launch: the `startup/` folder
+    - For desktop-only apps: the `startup/desktop/` folder
+    - For VR-only apps: the `startup/vr/` folder
+
+    You can open these folders directly from the VRCX settings page.
+  </Step>
+  <Step title="Choose stop behavior">
+    Toggle **Stop apps when VRChat closes** to control whether VRCX kills the launched apps when you exit VRChat. When enabled, VRCX terminates the entire process tree for each launched app.
+  </Step>
+</Steps>
+
+<Tip>
+  Enable **Run process once** to skip launching an app if it is already running. This prevents duplicate instances when you restart VRChat frequently.
+</Tip>
+
+<Note>
+  VRCX only launches apps when VRChat starts **after** VRCX itself has started. Apps are not launched retroactively if VRChat was already running when VRCX opened.
+</Note>
+
+## Auto-restart on crash
+
+Separately from app auto-launch, VRCX can watch for VRChat crashes and automatically restart the game, then rejoin the last instance you were in.
+
+This feature is configured in **Settings** under the **VRChat** section. When enabled:
+
+1. VRCX detects that the VRChat process has exited unexpectedly
+2. VRChat is relaunched automatically
+3. VRCX rejoins the last known instance once VRChat is ready
+
+<Warning>
+  Auto-restart will attempt to rejoin the last instance even if the instance no longer exists or is full. VRCX will handle the failure gracefully, but you may land in a different instance or need to navigate manually.
+</Warning>

@@ -1,0 +1,95 @@
+---
+title: "Development overview"
+description: "An overview of VRCX's tech stack, repository structure, and how the pieces fit together."
+---
+
+VRCX is a companion desktop application for VRChat. It is built as a hybrid application that combines a web-based frontend (Electron + Vue 3) with a native C#/.NET backend, bridged via [node-api-dotnet](https://github.com/nicowillis/node-api-dotnet).
+
+## Tech stack
+
+### Frontend
+
+The frontend runs inside an Electron renderer process and is built with:
+
+- **Vue 3** — component-based UI framework
+- **Vite** — build tool and dev server
+- **TailwindCSS v4** — utility-first styling
+- **Reka UI** — accessible headless UI components
+- **Pinia** — state management
+- **Vue Router** — client-side routing
+- **TanStack Query** — async data fetching and caching
+- **vue-i18n** — internationalization
+
+### Electron main process
+
+The Electron main process (`src-electron/main.js`) handles:
+
+- Application lifecycle and window management
+- Inter-process communication (IPC) between the renderer and the .NET backend
+- Loading the node-api-dotnet bridge
+- Platform-specific integration (system tray, notifications, OpenVR)
+
+### .NET backend
+
+The C# backend (`Dotnet/`) runs as a library loaded by the Electron process via node-api-dotnet. It handles:
+
+- VRChat API communication
+- SQLite database management
+- Screenshot metadata embedding
+- OpenVR overlay rendering
+- Discord Rich Presence integration
+- Game log monitoring
+- Process monitoring and auto-restart
+
+### Data storage
+
+VRCX uses **SQLite** for all persistent data, managed by `Dotnet/SQLite.cs`. Databases can grow to 8 GB or more for heavy users.
+
+## Repository structure
+
+```
+VRCX/
+├── src/                  # Vue 3 frontend application
+│   ├── api/              # VRChat API client wrappers
+│   ├── components/       # Reusable Vue components
+│   ├── composables/      # Vue composables (shared logic)
+│   ├── stores/           # Pinia state stores
+│   ├── views/            # Page-level Vue components
+│   ├── ipc-electron/     # IPC helpers for renderer ↔ main
+│   ├── localization/     # i18n translation files
+│   ├── queries/          # TanStack Query definitions
+│   └── vite.config.js    # Vite build configuration
+├── src-electron/         # Electron main process
+│   ├── main.js           # App entry point
+│   ├── preload.js        # Preload script (context bridge)
+│   ├── InteropApi.js     # node-api-dotnet bridge
+│   └── utils.js          # Shared utilities
+├── Dotnet/               # C# / .NET backend
+│   ├── AppApi/           # Exported API surface for JS
+│   ├── IPC/              # IPC message handlers
+│   ├── Overlay/          # OpenVR overlay rendering
+│   ├── ScreenshotMetadata/ # PNG metadata embedding
+│   ├── SQLite.cs         # Database management
+│   ├── LogWatcher.cs     # VRChat game log monitoring
+│   ├── Discord.cs        # Discord Rich Presence
+│   ├── ProcessMonitor.cs # VRChat process monitoring
+│   ├── AutoAppLaunchManager.cs # Auto-launch companion apps
+│   └── VRCX-Electron.csproj
+├── package.json          # Node.js dependencies and scripts
+└── VRCX.sln              # .NET solution file
+```
+
+<Note>
+  The `Installer/` directory (not shown above) contains NSIS scripts used to build the Windows installer (`VRCX_Setup.exe`).
+</Note>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Building from source" icon="hammer" href="/development/building-from-source">
+    Set up your environment and build VRCX locally.
+  </Card>
+  <Card title="Contributing" icon="code-pull-request" href="/development/contributing">
+    Learn the contribution guidelines before opening a pull request.
+  </Card>
+</CardGroup>

@@ -1,0 +1,60 @@
+---
+title: "Running on Linux"
+description: "How to install and run VRCX on Linux using the AppImage release."
+---
+
+VRCX provides an AppImage release for Linux. This is a self-contained executable that does not require a system-level installation.
+
+<Note>
+  For the most up-to-date Linux instructions, including distribution-specific notes and known issues, see the [VRCX wiki page on running VRCX on Linux](https://github.com/vrcx-team/VRCX/wiki/Running-VRCX-on-Linux).
+</Note>
+
+## Prerequisites
+
+VRCX is built with Electron and requires common system libraries that are present on most Linux desktop installations. If VRCX fails to launch, ensure the following packages are installed. The exact package names vary by distribution.
+
+**Required libraries (Debian/Ubuntu example):**
+
+```bash
+sudo apt install libglib2.0-0 libgtk-3-0 libnss3 libasound2 libx11-xcb1
+```
+
+For other distributions, install the equivalent packages using your system package manager.
+
+## Installing and running the AppImage
+
+<Steps>
+  <Step title="Download the AppImage">
+    Go to the [VRCX releases page](https://github.com/vrcx-team/VRCX/releases/latest) and download the file ending in `.AppImage`.
+  </Step>
+  <Step title="Make the file executable">
+    Open a terminal in the directory where you downloaded the file and run:
+
+    ```bash
+    chmod +x VRCX_Version.AppImage
+    ```
+  </Step>
+  <Step title="Run VRCX">
+    Launch the AppImage directly:
+
+    ```bash
+    ./VRCX_Version.AppImage
+    ```
+
+    You can also double-click the file in your file manager if your desktop environment supports AppImage execution.
+  </Step>
+</Steps>
+
+## VR overlay on Linux
+
+<Warning>
+  The VR overlay feature has limited functionality on Linux. Full overlay support requires SteamVR running on Windows. On Linux, overlay behavior may differ from the Windows experience.
+</Warning>
+
+## Running on macOS
+
+The process for macOS is similar. Download the `.dmg` file from the [releases page](https://github.com/vrcx-team/VRCX/releases/latest), open it, and drag VRCX to your Applications folder. On first launch, you may need to allow the app in **System Settings → Privacy & Security** if macOS shows a security warning.
+
+<Note>
+  As with Linux, the VR overlay feature may have limited functionality on macOS.
+</Note>

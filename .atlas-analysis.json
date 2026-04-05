@@ -1,28 +1,11 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
-  "name": "VRCX",
+  "projectType": "saas",
+  "projectName": "VRCX",
+  "projectDescription": "A feature-rich companion application for VRChat that provides friend management, activity tracking, customizable dashboards, VR overlay, and more — all outside the VRChat client.",
   "theme": "almond",
-  "colors": {
-    "primary": "#848c8e",
-    "light": "#11161e",
-    "dark": "#cfd0d2"
-  },
-  "favicon": "https://media.brand.dev/2b01fe20-c04b-4a1d-a2f9-1d2789c50a7a.jpg",
-  "logo": {
-    "light": "https://media.brand.dev/5ffd6ce4-2434-4b4b-920a-f8cacac8b48b.svg",
-    "dark": "https://media.brand.dev/5ffd6ce4-2434-4b4b-920a-f8cacac8b48b.svg"
-  },
-  "navbar": {
-    "primary": {
-      "type": "github",
-      "href": "https://github.com/vrcx-team/VRCX"
-    }
-  },
-  "footer": {
-    "socials": {
-      "github": "https://github.com/vrcx-team/VRCX"
-    }
-  },
+  "primaryColor": "#848c8e",
+  "lightColor": "#11161e",
+  "darkColor": "#cfd0d2",
   "navigation": {
     "tabs": [
       {
@@ -95,5 +78,32 @@
         ]
       }
     ]
-  }
+  },
+  "keyFeatures": [
+    "Friend, world, and avatar list management with activity tracking",
+    "Customizable multi-panel dashboard with Feed, GameLog, and Instance widgets",
+    "Powerful search across users, worlds, avatars, and groups",
+    "Activity heatmap showing friend online patterns",
+    "Screenshot metadata storage to remember in-game locations",
+    "VR overlay with live event and notification feed",
+    "Discord Rich Presence with world thumbnail and join button",
+    "Social status presets for quick status switching",
+    "Auto-launch apps when VRChat starts",
+    "Auto-restart and rejoin last instance on VRChat crash",
+    "Export/import friends list, avatars, notes, and favorites",
+    "Themes support for custom VRCX appearance",
+    "VRChat server status indicator",
+    "Upload and manage avatar/world images without Unity"
+  ],
+  "publicApiSurface": [
+    "VRChat API integration (auth, friends, worlds, avatars, groups, notifications)",
+    "AppApi (C#/.NET bridge between Electron and VRChat logic)",
+    "SQLite database for activity and screenshot metadata",
+    "IPC bridge between Electron main process and Vue renderer",
+    "OpenVR overlay interface for VR headset support",
+    "Screenshot metadata schema (PNG chunk embedded JSON)",
+    "Localization system (vue-i18n, multi-language support)",
+    "Pinia stores for state management (friends, feed, gameLog, dashboard, etc.)",
+    "Auto-launch manager for companion app orchestration"
+  ]
 }

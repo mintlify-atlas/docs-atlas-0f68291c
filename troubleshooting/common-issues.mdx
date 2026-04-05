@@ -1,0 +1,90 @@
+---
+title: "Common issues"
+description: "Solutions to common problems encountered when using VRCX."
+---
+
+<AccordionGroup>
+  <Accordion title="VRCX won't start or crashes on startup">
+    Try the following steps in order:
+
+    1. **Reinstall VRCX.** Download the latest installer from the [GitHub Releases page](https://github.com/vrcx-team/VRCX/releases/latest) and run a clean installation.
+    2. **Check your antivirus software.** Some antivirus tools incorrectly flag VRCX or block it from running. Add VRCX to your antivirus exclusion list and try again.
+    3. **Check for a conflicting process.** Make sure no previous instance of VRCX is still running in the background. Check Task Manager (Windows) or your system's process monitor.
+
+    If the issue persists, [open an issue on GitHub](https://github.com/vrcx-team/VRCX/issues) with your operating system, VRCX version, and any error messages you see.
+  </Accordion>
+
+  <Accordion title="Can't log in">
+    If login fails, check the following:
+
+    - **Verify your credentials.** Confirm your VRChat username and password are correct. You can test them at [vrchat.com](https://vrchat.com).
+    - **Check your 2FA code.** If your VRChat account uses two-factor authentication, make sure you are entering a current, valid code. TOTP codes expire after 30 seconds.
+    - **Check VRChat server status.** VRCX displays a real-time VRChat server status indicator in the status bar and on the login page. If VRChat is experiencing an outage, login will fail until service is restored.
+  </Accordion>
+
+  <Accordion title="Friends list is not updating">
+    If your friends list appears stale or stops refreshing:
+
+    1. Check your internet connection.
+    2. Verify VRChat is not experiencing an outage — the server status indicator is shown in the VRCX status bar.
+    3. Restart VRCX. This clears the local session state and triggers a fresh data fetch.
+
+    If the problem continues after restarting, wait a few minutes and try again. VRChat API rate limits may temporarily delay updates.
+  </Accordion>
+
+  <Accordion title="Discord Rich Presence is not showing">
+    For Discord Rich Presence to work correctly:
+
+    1. **Open Discord before launching VRCX.** Discord must already be running when VRCX starts in order to establish the Rich Presence connection.
+    2. **Verify the setting is enabled.** In VRCX, go to **Settings** and confirm that Discord Rich Presence is turned on.
+    3. **Check Discord's Activity Status setting.** In Discord, go to **User Settings → Activity Privacy** and make sure "Display current activity as a status message" is enabled.
+
+    Restarting both Discord and VRCX after confirming these settings usually resolves the issue.
+  </Accordion>
+
+  <Accordion title="VR overlay is not appearing">
+    If the VR overlay does not show up in your headset:
+
+    1. **Ensure SteamVR is running** before you launch VRCX. The overlay depends on the SteamVR overlay system.
+    2. **Check that the overlay is enabled.** In VRCX, open **Settings** and verify that the VR overlay option is turned on.
+    3. **Restart SteamVR and VRCX.** If SteamVR was started after VRCX, the overlay connection may not have been established. Restart both in the correct order.
+
+    <Note>
+      The VR overlay has limited functionality on Linux and macOS. Full support requires SteamVR running on Windows.
+    </Note>
+  </Accordion>
+
+  <Accordion title="Screenshot metadata is not being embedded">
+    VRCX embeds world and location data into screenshots taken in VRChat, but only if VRCX is running at the time the screenshot is captured.
+
+    - Make sure VRCX is open and running while you play VRChat.
+    - Do not close VRCX mid-session if you want metadata to be recorded for screenshots taken during that session.
+
+    Screenshots taken while VRCX is closed will not have metadata embedded after the fact.
+  </Accordion>
+
+  <Accordion title="VRCX is using a lot of memory">
+    High memory usage is expected behavior for users with large friends lists. VRCX is designed to support **1,000 to 4,000 friends**, and the local SQLite database can grow up to **8 GB** over time as activity history accumulates.
+
+    To reduce memory usage:
+
+    - Close other applications to free up system RAM.
+    - Consider periodically clearing old activity log data if you do not need long-term history. This can be done from the database settings in VRCX.
+
+    If memory usage seems abnormally high (e.g., several gigabytes with a small friends list), restart VRCX and monitor whether usage returns to normal levels.
+  </Accordion>
+
+  <Accordion title="How do I reset VRCX settings?">
+    <Warning>
+      Resetting your settings is irreversible. Your configuration, notes, and local activity history will be deleted. Export any data you want to keep before proceeding.
+    </Warning>
+
+    To fully reset VRCX, delete the VRCX app data folder:
+
+    - **Windows:** `%APPDATA%\VRCX`
+    - **Linux:** `~/.config/VRCX`
+    - **macOS:** `~/Library/Application Support/VRCX`
+
+    After deleting the folder, launch VRCX and it will start fresh as if it were a new installation.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,69 @@
+---
+title: "Contributing"
+description: "Guidelines for contributing code, bug fixes, and improvements to VRCX."
+---
+
+Thank you for your interest in contributing to VRCX. Read these guidelines before opening a pull request — they will save you time and improve the chances that your contribution is accepted.
+
+## Before you start
+
+<Warning>
+  **Large changes require prior discussion.** If your PR involves significant new features, refactors, or architectural changes, open an issue first to discuss the approach. PRs submitted without prior discussion may not be accepted.
+</Warning>
+
+Keep these principles in mind before investing time in a contribution:
+
+- **Is this feature broadly useful?** Niche or low-value features increase maintenance burden without proportional benefit and may not be accepted.
+- **Could it break existing functionality?** Changes that interfere with or degrade existing features will not be merged.
+- **Small fixes are always welcome.** Typo fixes, bug fixes, and minor improvements can be submitted directly without prior discussion.
+
+### UI changes
+
+<Note>
+  UI-related PRs are generally declined. To maintain a consistent and cohesive interface, changes to layouts, styling, and visual components are not typically accepted via PR. Open an issue instead so the team can discuss it.
+</Note>
+
+### Performance baseline
+
+VRCX is designed to perform well for users with **1,000 to 4,000 friends**. Any changes involving data operations must be able to handle databases up to **8 GB** in size. Keep these baselines in mind when implementing features or optimizations.
+
+## Finding something to work on
+
+Check issues labeled [`PR welcome`](https://github.com/vrcx-team/VRCX/issues?q=label%3A%22pr+welcome%22+is%3Aclosed) on GitHub.
+
+<Note>
+  These issues are listed under **Closed** issues, not Open. The team keeps them in the Closed tab to avoid cluttering the open issues list. Once your PR is merged, the corresponding issue will be marked as completed.
+</Note>
+
+Even for `PR welcome` issues, if the change involves core functionality, discuss it in the issue thread before starting work.
+
+## Submitting a pull request
+
+<Steps>
+  <Step title="Fork and branch">
+    Fork the repository on GitHub and create a new branch from `master`:
+
+    ```bash
+    git checkout -b my-feature master
+    ```
+  </Step>
+
+  <Step title="Make your changes">
+    Implement your fix or feature. Make sure to:
+
+    - Test your changes locally (see [Building from source](/development/building-from-source))
+    - Keep changes focused — one logical change per PR
+    - Avoid unrelated formatting or whitespace changes
+  </Step>
+
+  <Step title="Open a pull request">
+    Push your branch and open a PR against the `master` branch of `vrcx-team/VRCX`. Include:
+
+    - A clear description of **what** you changed and **why**
+    - A reference to any related issue (e.g., `Closes #123`)
+  </Step>
+</Steps>
+
+<Warning>
+  PRs that do not follow these guidelines may be closed without review.
+</Warning>

@@ -1,0 +1,72 @@
+---
+title: "VR overlay"
+description: "A configurable live overlay visible inside your VR headset that shows a feed of all supported events and notifications."
+---
+
+The VR overlay renders a live event and notification feed directly inside your headset while you play VRChat. It uses OpenVR to draw panels into your scene so you never have to remove your headset to check on friends, invites, or other activity.
+
+## Requirements
+
+<Note>
+  The VR overlay requires an OpenVR-compatible headset and SteamVR. It is not available on standalone headsets unless you are streaming via Virtual Desktop or Steam Link.
+</Note>
+
+- SteamVR installed and running
+- An OpenVR-compatible headset (Index, Vive, Quest via Virtual Desktop or Steam Link, and others)
+- VRCX running alongside VRChat
+
+## Overlay types
+
+VRCX provides two overlay styles you can enable independently.
+
+<CardGroup cols={2}>
+  <Card title="Wrist overlay" icon="hand">
+    Attaches to your controller and appears when you press the grip or menu button. Sized at 512&times;512 px and positioned relative to your hand.
+  </Card>
+  <Card title="HMD overlay" icon="vr-cardboard">
+    Fixed in front of your headset at a comfortable distance. Rendered at 1024&times;1024 px and always visible while active.
+  </Card>
+</CardGroup>
+
+## Enabling the overlay
+
+<Steps>
+  <Step title="Open VRCX settings">
+    Click the gear icon or go to **Settings** in the VRCX menu bar.
+  </Step>
+  <Step title="Find the VR overlay section">
+    Navigate to the **VR Overlay** settings group.
+  </Step>
+  <Step title="Enable the overlay">
+    Toggle **VR Overlay** on. Choose whether to enable the **Wrist overlay**, the **HMD overlay**, or both.
+  </Step>
+  <Step title="Configure the trigger hand">
+    For the wrist overlay, select which hand (left, right, or either) triggers the panel, and choose which controller button activates it.
+  </Step>
+  <Step title="Launch VRChat in VR">
+    Start VRChat. VRCX connects to SteamVR automatically and the overlay becomes active.
+  </Step>
+</Steps>
+
+## Supported events
+
+The overlay displays the same event feed available on your VRCX desktop dashboard. Events shown include:
+
+- Friend online/offline status changes
+- Friend location and world changes
+- Incoming invite notifications
+- Friend request notifications
+- Instance player join/leave events
+- Any other notification supported by the VRCX feed
+
+<Tip>
+  Use the feed filter settings in VRCX to control which event types appear in the overlay. The overlay respects the same filters configured for your dashboard.
+</Tip>
+
+## Device battery display
+
+When the overlay is active, VRCX reads battery and charging state from connected OpenVR devices (headset, left controller, right controller, trackers, and base stations) and can surface this information in the overlay feed.
+
+## Custom overlay script
+
+Advanced users can place a `customvr.js` file in the VRCX app data directory to inject custom JavaScript into the overlay renderer. This allows additional overlay customization beyond what is available in settings.

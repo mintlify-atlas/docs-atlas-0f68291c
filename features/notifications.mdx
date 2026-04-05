@@ -1,0 +1,73 @@
+---
+title: "Notifications"
+description: "Receive and respond to friend requests and invites from VRCX without being in-game. Monitor VRChat server status in real time."
+---
+
+The notifications view collects incoming VRChat notifications in one place and lets you act on them directly from VRCX — no need to open the game.
+
+---
+
+## What VRCX notifies you about
+
+<CardGroup cols={2}>
+  <Card title="Friend requests" icon="user-plus">
+    Incoming friend requests appear in the notifications list. You can accept them directly from VRCX.
+  </Card>
+  <Card title="Invites" icon="envelope">
+    Friends can send you invites to their current instance. VRCX shows the world name and instance details so you can decide before joining.
+  </Card>
+  <Card title="Invite requests" icon="paper-plane">
+    If a friend requests an invite to your current instance, you can send the invite back from VRCX without switching to the game.
+  </Card>
+  <Card title="Other notifications" icon="bell">
+    Group notifications, moderation alerts, and other VRChat notification types also appear in the list.
+  </Card>
+</CardGroup>
+
+---
+
+## Notification columns
+
+| Column | Description |
+|---|---|
+| Date | Timestamp of the notification |
+| Type | Notification category (invite, friendRequest, requestInvite, etc.) |
+| User | Display name of the sender — click to open their profile |
+| Group | Group name, for group-related notifications |
+| Photo | Thumbnail image attached to the notification, if any |
+| Message | Invite message, request message, or response message |
+| Action | Accept, decline, or delete the notification |
+
+---
+
+## Sending and receiving invites
+
+<AccordionGroup>
+  <Accordion title="Receiving an invite">
+    When a friend sends you an invite, it appears in the notifications list with the **Type** badge showing `invite`. The **Message** column shows the world name and instance as a clickable location link, so you can see exactly where you would be joining.
+
+    You can respond to an invite by using the action buttons on the right side of the row.
+  </Accordion>
+  <Accordion title="Accepting a friend request">
+    Friend requests appear with the **Type** badge showing `friendRequest`. Click the check icon in the **Action** column to accept. The notification is then resolved and removed from the active list.
+  </Accordion>
+  <Accordion title="Responding to an invite request">
+    If a friend uses the "Request Invite" feature in VRChat to ask to join your instance, their request appears in VRCX. If you are currently in an invitable instance and VRChat is running, you can send them an invite directly from the action buttons — without switching to the game.
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  Some actions (such as sending an invite back to a request) require VRChat to be running and for you to be in an instance that allows invites.
+</Note>
+
+---
+
+## VRChat server status
+
+A status bar at the bottom of VRCX displays the current health of VRChat's services. If VRChat is experiencing an outage or degraded performance, the indicator changes to reflect the issue in real time.
+
+The same status information appears on the login page as an alert, so you know immediately if a sign-in failure is caused by a VRChat-side problem rather than your credentials.
+
+<Tip>
+  If you are having trouble connecting to VRChat, check the server status bar before troubleshooting your own setup.
+</Tip>

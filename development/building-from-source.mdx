@@ -1,0 +1,119 @@
+---
+title: "Building from source"
+description: "How to clone, build, and run VRCX locally from the source repository."
+---
+
+<Info>
+  For additional platform-specific notes (including Linux), see the [Building from source](https://github.com/vrcx-team/VRCX/wiki/Building-from-source) page on the GitHub wiki.
+</Info>
+
+## Prerequisites
+
+Before you begin, make sure the following tools are installed:
+
+| Tool | Required version |
+|------|-----------------|
+| Node.js | `>=24.10.0` |
+| npm | `>=11.5.0` |
+| .NET SDK | 9.0 |
+| Git | Any recent version |
+
+## Build steps
+
+<Steps>
+  <Step title="Clone the repository">
+    Clone the VRCX repository from GitHub:
+
+    ```bash
+    git clone https://github.com/vrcx-team/VRCX.git
+    cd VRCX
+    ```
+  </Step>
+
+  <Step title="Install Node.js dependencies">
+    Install all frontend and Electron dependencies:
+
+    ```bash
+    npm install
+    ```
+  </Step>
+
+  <Step title="Build the .NET backend">
+    Build the C# backend from the `Dotnet/` directory. Run this from the repository root:
+
+    ```bash
+    dotnet build Dotnet/VRCX-Electron.csproj
+    ```
+
+    <Note>
+      On ARM64 machines, build `VRCX-Electron-arm64.csproj` instead.
+    </Note>
+  </Step>
+
+  <Step title="Run in development mode">
+    Start the Vite dev server and Electron together:
+
+    <CodeGroup>
+
+    ```bash Windows
+    npm run dev
+    ```
+
+    ```bash Linux
+    npm run dev-linux
+    ```
+
+    </CodeGroup>
+
+    This serves the Vue frontend with hot-reload and launches the Electron shell pointing at the local dev server.
+  </Step>
+
+  <Step title="Build for production">
+    First, compile the Vue frontend:
+
+    <CodeGroup>
+
+    ```bash Windows
+    npm run prod
+    ```
+
+    ```bash Linux
+    npm run prod-linux
+    ```
+
+    </CodeGroup>
+
+    Then package the Electron application:
+
+    <CodeGroup>
+
+    ```bash x64 (default)
+    npm run build-electron
+    ```
+
+    ```bash ARM64
+    npm run build-electron-arm64
+    ```
+
+    </CodeGroup>
+
+    The packaged output is written to the `build/` directory.
+  </Step>
+</Steps>
+
+## What each script does
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Vite dev server + Electron (Windows) |
+| `npm run dev-linux` | Vite dev server + Electron (Linux) |
+| `npm run prod` | Production Vite build (Windows) |
+| `npm run prod-linux` | Production Vite build (Linux) |
+| `npm run build-electron` | Package x64 Electron app |
+| `npm run build-electron-arm64` | Package ARM64 Electron app |
+| `npm run test` | Run Vitest unit tests |
+| `npm run lint` | Run oxlint + ESLint |
+
+<Warning>
+  `npm run build-electron` downloads the .NET runtime for the target architecture as part of the build. Make sure you have an active internet connection the first time you run it.
+</Warning>

@@ -1,0 +1,105 @@
+---
+title: "Feed and game log"
+description: "Monitor friend activity in real time with the Feed, and review in-game events, video links, and instance player data with the GameLog."
+---
+
+VRCX provides two complementary event streams: the **Feed** tracks what your friends are doing on VRChat, and the **GameLog** captures what is happening inside your current game session.
+
+---
+
+## Feed
+
+The Feed is a real-time stream of activity events for everyone on your friends list.
+
+<CardGroup cols={2}>
+  <Card title="Online and offline events" icon="circle">
+    See when friends come online or go offline, including the location they joined or left from.
+  </Card>
+  <Card title="World joins (GPS)" icon="map-pin">
+    Track when a friend moves to a different world or instance. Expand a row to see both the previous and new location.
+  </Card>
+  <Card title="Avatar changes" icon="masks-theater">
+    See when a friend switches their avatar, with before-and-after thumbnail previews shown in the expanded row.
+  </Card>
+  <Card title="Status changes" icon="circle-dot">
+    Catch changes to a friend's online status (e.g., Join Me, Ask Me, Busy) and their status message.
+  </Card>
+  <Card title="Bio changes" icon="pen-to-square">
+    View updates to a friend's profile bio, with added and removed text highlighted side by side.
+  </Card>
+</CardGroup>
+
+### Feed columns
+
+| Column | Description |
+|---|---|
+| Date | Timestamp of the event (short format; hover for full date and time) |
+| Type | Event category badge (GPS, Online, Offline, Avatar, Status, Bio) |
+| User | Display name of the friend who triggered the event |
+| Detail | Summary of the event — location, avatar name, status text, etc. |
+
+Expanding a row (using the chevron on the left) shows the full event detail, such as previous and current avatar thumbnails or location transitions.
+
+### Filtering the feed
+
+Use the filter controls above the table to show only specific event types. Active filters are applied immediately and persist until you change them. You can also configure per-widget filters when using the Feed inside a [dashboard widget](/features/dashboard).
+
+---
+
+## Game log
+
+The GameLog captures events from your active VRChat session, read directly from the VRChat log file.
+
+<CardGroup cols={2}>
+  <Card title="Player joins and leaves" icon="right-to-bracket">
+    See who enters and exits your current instance in real time. Friend and favorite indicators appear next to player names.
+  </Card>
+  <Card title="Video links" icon="film">
+    Any video playing in the world is logged with its URL and video player ID, so you can find or share it later.
+  </Card>
+  <Card title="Location changes" icon="location-dot">
+    Each time you join a new instance, the GameLog records the world and instance details.
+  </Card>
+  <Card title="Portal spawns" icon="door-open">
+    Portal events are logged with the destination world, letting you track where portals in your current instance lead.
+  </Card>
+  <Card title="Image and string loads" icon="image">
+    URLs for images and strings loaded by the world are logged and can be opened or copied directly from the table.
+  </Card>
+  <Card title="In-game events" icon="bell">
+    World-specific events and external data triggered during your session appear in the log with their raw data.
+  </Card>
+</CardGroup>
+
+### Game log columns
+
+| Column | Description |
+|---|---|
+| Date | Timestamp of the event |
+| Type | Event type badge (Location, OnPlayerJoined, OnPlayerLeft, VideoPlay, PortalSpawn, etc.) |
+| User | Player name associated with the event, if applicable |
+| Detail | Location link, video URL, event data, or resource URL |
+| Action | Delete the log entry, or view previous instance info for Location events |
+
+<Tip>
+  Hold **Shift** and click the delete button to remove a log entry immediately without a confirmation prompt.
+</Tip>
+
+### Current instance player list
+
+While you are in-game, the GameLog also surfaces data about the players in your current instance. Friends are marked with a green heart icon, and favorited friends are marked with a star.
+
+<Note>
+  The GameLog only captures events from sessions where VRCX is running at the same time as VRChat. Events that occurred before VRCX was launched in a session are not retroactively logged.
+</Note>
+
+---
+
+## Using Feed and GameLog together
+
+The Feed and GameLog serve different purposes and complement each other:
+
+- Use the **Feed** to keep up with what your friends are doing across VRChat while you are in a session or browsing VRCX.
+- Use the **GameLog** to review what happened during a specific session — who was in your instance, what videos played, and where portals led.
+
+You can display both simultaneously using [dashboard widgets](/features/dashboard), with independent filters per panel.

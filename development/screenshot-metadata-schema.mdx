@@ -1,0 +1,161 @@
+---
+title: "Screenshot metadata schema"
+description: "The JSON schema VRCX uses to embed world and player data into VRChat PNG screenshots."
+---
+
+When VRCX is running, it automatically embeds contextual metadata into every PNG screenshot taken in-game by VRChat. This metadata records the world, instance, and players present at the moment the screenshot was taken — so you can look back at a photo months later and know exactly where and with whom it was taken.
+
+## How it works
+
+VRCX writes the metadata as a custom PNG text chunk directly into the screenshot file. The data is stored as a JSON string and does not affect image rendering or compatibility with standard image viewers.
+
+The feature is handled by the `Dotnet/ScreenshotMetadata/` subsystem, which watches for new screenshots and processes them while VRChat is running.
+
+<Note>
+  Screenshot metadata is embedded automatically. No configuration is required beyond having VRCX open while playing VRChat.
+</Note>
+
+## Schema
+
+The embedded JSON object conforms to this schema (JSON Schema Draft-07):
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VRChat Screenshot JSON",
+  "description": "JSON object attached by VRCX to screenshot files taken by users in-game.",
+  "type": "object",
+  "required": ["application", "version", "author", "world", "players"],
+  "properties": {
+    "application": {
+      "type": "string",
+      "default": "VRCX",
+      "description": "Name of the application writing to the screenshot. Should be VRCX."
+    },
+    "version": {
+      "type": "integer",
+      "const": 1,
+      "description": "The version of this schema. Increments when the format changes."
+    },
+    "author": {
+      "type": "object",
+      "description": "The user that took the picture.",
+      "required": ["id", "displayName"],
+      "properties": {
+        "id": { "type": "string" },
+        "displayName": { "type": "string" }
+      }
+    },
+    "world": {
+      "type": "object",
+      "description": "The world the picture was taken in.",
+      "required": ["id", "name", "instanceId"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "instanceId": { "type": "string" }
+      }
+    },
+    "players": {
+      "type": "array",
+      "description": "Players present in the instance when the picture was taken.",
+      "items": {
+        "type": "object",
+        "required": ["id", "displayName"],
+        "properties": {
+          "id": { "type": "string" },
+          "displayName": { "type": "string" }
+        }
+      }
+    }
+  }
+}
+```
+
+## Field reference
+
+### Top-level fields
+
+<ResponseField name="application" type="string" required>
+  The name of the application that wrote the metadata. Always `"VRCX"`.
+</ResponseField>
+
+<ResponseField name="version" type="integer" required>
+  Schema version number. Currently `1`. This value increments when the schema changes in a breaking way.
+</ResponseField>
+
+<ResponseField name="author" type="object" required>
+  The VRChat user who took the screenshot.
+
+  <Expandable title="author properties">
+    <ResponseField name="id" type="string" required>
+      The VRChat user ID of the author (e.g., `usr_xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`).
+    </ResponseField>
+    <ResponseField name="displayName" type="string" required>
+      The display name of the author at the time the screenshot was taken.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="world" type="object" required>
+  Information about the VRChat world where the screenshot was taken.
+
+  <Expandable title="world properties">
+    <ResponseField name="id" type="string" required>
+      The VRChat world ID (e.g., `wrld_xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`).
+    </ResponseField>
+    <ResponseField name="name" type="string" required>
+      The display name of the world.
+    </ResponseField>
+    <ResponseField name="instanceId" type="string" required>
+      The full instance ID string, including the world ID and instance type/region suffix (e.g., `wrld_xxx~region(us)`).
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="players" type="array" required>
+  A list of all players present in the instance at the moment the screenshot was taken.
+
+  <Expandable title="player object properties">
+    <ResponseField name="id" type="string" required>
+      The VRChat user ID of the player.
+    </ResponseField>
+    <ResponseField name="displayName" type="string" required>
+      The display name of the player.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Example
+
+```json
+{
+  "application": "VRCX",
+  "version": 1,
+  "author": {
+    "id": "usr_00000000-0000-0000-0000-000000000000",
+    "displayName": "ExampleUser"
+  },
+  "world": {
+    "id": "wrld_00000000-0000-0000-0000-000000000000",
+    "name": "The Great Pug",
+    "instanceId": "wrld_00000000-0000-0000-0000-000000000000~public(00000000)~region(us)"
+  },
+  "players": [
+    {
+      "id": "usr_00000000-0000-0000-0000-000000000001",
+      "displayName": "FriendOne"
+    },
+    {
+      "id": "usr_00000000-0000-0000-0000-000000000002",
+      "displayName": "FriendTwo"
+    }
+  ]
+}
+```
+
+## Schema versioning
+
+The `version` field allows VRCX and third-party tools to handle future schema changes gracefully. If the format changes in a breaking way, `version` will be incremented. The current schema is version `1`.
+
+The schema source file lives at `Dotnet/docs/screenshotMetadata-schema.json` in the repository.

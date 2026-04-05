@@ -1,0 +1,145 @@
+---
+title: "Settings"
+description: "Overview of VRCX's settings categories and what each one controls."
+---
+
+VRCX's settings are organized into tabs. Open **Settings** from the sidebar to access them.
+
+<AccordionGroup>
+  <Accordion title="System">
+    The **System** tab covers startup behavior, build channel, and core application options.
+
+    | Option | Description |
+    |--------|-------------|
+    | Start at Windows startup | Launch VRCX automatically when you log in to Windows. |
+    | Start minimized | Open VRCX to the system tray instead of showing the main window on launch. |
+    | Close to tray | Minimize VRCX to the system tray when you click the close button instead of exiting. |
+    | Disable GPU acceleration | Turn off hardware acceleration. Useful if you experience rendering issues. |
+    | Change build | Switch between the Stable and Nightly (beta) release channels. Requires a restart. |
+
+    <Note>
+      The Nightly build receives updates more frequently and may include experimental features that have not yet been fully tested. You can switch back to Stable at any time from this tab.
+    </Note>
+  </Accordion>
+
+  <Accordion title="Interface">
+    The **Interface** tab controls the visual appearance of VRCX, including theme, language, fonts, and layout options.
+
+    | Option | Description |
+    |--------|-------------|
+    | Theme mode | Switch between light, dark, or system-matched appearance. |
+    | Theme file | Load a community CSS theme to restyle the application. |
+    | Language | Change the display language used throughout VRCX. |
+    | Font family | Choose from built-in font options or specify a custom font. |
+    | CJK font pack | Select an appropriate font for Chinese, Japanese, or Korean text. |
+    | Table density | Set table row height to compact, standard, or comfortable. |
+    | Sidebar sort order | Configure up to three sort criteria for the friends sidebar. |
+    | 12-hour clock | Display times in 12-hour format instead of 24-hour. |
+
+    <Tip>
+      See [Themes](/customization/themes) for details on installing and using community themes.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Social">
+    The **Social** tab controls friend activity automation and status behavior.
+
+    | Option | Description |
+    |--------|-------------|
+    | Auto state change | Automatically switch your VRChat status (e.g., "Join Me" when alone, "Busy" when with friends). |
+    | Auto accept invite requests | Automatically accept invite requests from all friends, VIP friends, or specific groups. |
+    | Auto login delay | Add a short delay before VRCX attempts to auto-login after VRChat starts. |
+    | Recent action cooldown | Prevent the same notification from firing repeatedly within a set time window. |
+  </Accordion>
+
+  <Accordion title="Notifications">
+    The **Notifications** tab lets you choose which events trigger notifications and how those notifications are delivered.
+
+    **Delivery methods**
+
+    | Option | Description |
+    |--------|-------------|
+    | Desktop toasts | Show pop-up notifications on your desktop (configurable to always show, only when AFK, or never). |
+    | Overlay notifications | Show notifications in the VRCX VR overlay. |
+    | XSOverlay notifications | Forward notifications to XSOverlay if you use it. |
+    | OVRToolkit HUD / wrist | Forward notifications to OVRToolkit's HUD or wrist display. |
+    | Text-to-speech | Read notification text aloud. Choose a voice and test it from this tab. |
+
+    **Event filters**
+
+    Each notification channel (desktop and wrist overlay) has its own set of per-event filters. For each event type you can set the audience:
+
+    - **Off** — no notification
+    - **VIP** — notify only for favorited friends
+    - **Friends** — notify for all friends
+    - **Everyone** — notify for all players
+
+    Events you can filter include friend online/offline, GPS location changes, status changes, invites, friend requests, group announcements, portal spawns, and more.
+
+    <Note>
+      Desktop toast and overlay notification filters are configured independently, so you can have detailed wrist overlay alerts while keeping desktop notifications minimal.
+    </Note>
+  </Accordion>
+
+  <Accordion title="VR">
+    The **VR** tab configures the wrist overlay that appears in VR while VRChat is running.
+
+    | Option | Description |
+    |--------|-------------|
+    | Enable wrist overlay | Turn the overlay on or off. |
+    | Overlay hand | Choose which hand the overlay appears on (left or right). |
+    | Open VR always | Keep the overlay active even when VRChat is not running. |
+    | Overlay button | Show a physical button in VR to toggle the overlay. |
+    | Background | Enable a solid background behind the overlay for readability. |
+    | Minimal feed | Show a condensed version of the event feed on the overlay. |
+    | Hide private from feed | Exclude events from private instances from the overlay feed. |
+    | CPU usage | Display current CPU usage on the overlay. |
+
+    <Tip>
+      The wrist overlay's notification filters are configured separately in the **Notifications** tab under the wrist channel.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Integrations">
+    The **Integrations** tab manages connections to external services.
+
+    **Discord Rich Presence**
+
+    | Option | Description |
+    |--------|-------------|
+    | Enable Discord Rich Presence | Show your VRChat activity in your Discord profile. |
+    | Show instance info | Include world name and instance details in the presence. |
+    | Show player count | Display current and maximum player counts. |
+    | Join button | Add a join button to public lobbies in your Discord presence. |
+    | Hide world image | Omit the world thumbnail from the presence card. |
+    | Show platform | Indicate whether you are in desktop or VR mode. |
+    | World integration | Enable enhanced Rich Presence for specific VRChat worlds that support it. |
+
+    <Note>
+      Discord must be running for Rich Presence to work. The feature uses Discord's local IPC, not your Discord token.
+    </Note>
+  </Accordion>
+
+  <Accordion title="Advanced">
+    The **Advanced** tab contains options for power users, including app launcher configuration, logging, database management, and API integrations.
+
+    | Option | Description |
+    |--------|-------------|
+    | App launcher | Enable and configure the list of apps that launch automatically when VRChat starts. See [Auto-launch](/features/auto-launch). |
+    | Relaunch VRChat after crash | Automatically restart VRChat and rejoin the last instance if it crashes. |
+    | Game log | Enable or disable VRCX's game log parsing. Disabling this reduces CPU usage but removes feed events and location tracking. |
+    | Screenshot helper | Embed world metadata into screenshots taken in VRChat. |
+    | YouTube API | Enable YouTube video title lookup for video players detected in the game log. |
+    | Translation API | Enable in-app translation using the Google Translate or OpenAI-compatible API. |
+    | Primary password | Set a password that must be entered before VRCX loads your saved credentials. |
+    | Database cleanup | View SQLite table sizes and purge old avatar feed data. |
+
+    <Warning>
+      Disabling the game log will prevent VRCX from tracking instance history, player join/leave events, and video plays. Most feed and GameLog features depend on it.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Media">
+    The **Media** tab contains settings related to in-game media and user-generated content handling, such as screenshot storage paths and print/sticker saving behavior.
+  </Accordion>
+</AccordionGroup>

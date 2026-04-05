@@ -1,0 +1,83 @@
+---
+title: "Dashboard"
+description: "Build custom multi-panel layouts using Feed, GameLog, and Instance widgets. Create multiple dashboards, each with its own configuration."
+---
+
+The dashboard gives you a flexible, personalized view of your VRCX data. You can build multiple dashboards, each with its own arrangement of panels and configuration, and switch between them from the sidebar.
+
+## Overview
+
+A dashboard is made up of **rows**, each containing one or two **panels**. Each panel holds a single widget. Rows can be arranged horizontally or vertically to suit your screen layout.
+
+<CardGroup cols={3}>
+  <Card title="Feed widget" icon="rss">
+    A live stream of friend activity events — online/offline transitions, world joins, avatar changes, status updates, and bio changes.
+  </Card>
+  <Card title="GameLog widget" icon="scroll">
+    A live log of in-game events from your current VRChat session, including player joins/leaves, video plays, and portal spawns.
+  </Card>
+  <Card title="Instance widget" icon="users">
+    A list of players in your current instance, with indicators for friends and favorites.
+  </Card>
+</CardGroup>
+
+---
+
+## Creating a dashboard
+
+<Steps>
+  <Step title="Open the dashboard section">
+    Select **Dashboard** in the VRCX sidebar. If this is your first time, a default dashboard is shown.
+  </Step>
+  <Step title="Add a new dashboard">
+    Click the **+** button next to the existing dashboard tabs to create a new dashboard. Give it a name and choose an icon.
+  </Step>
+  <Step title="Add a row">
+    Inside the new dashboard, click **Add row** to create the first row. Choose whether the row splits panels horizontally or vertically.
+  </Step>
+  <Step title="Add a widget to a panel">
+    Click the empty panel placeholder and select a widget type: **Feed**, **GameLog**, or **Instance**.
+  </Step>
+  <Step title="Configure the widget">
+    Open the widget's settings (using the header controls) to choose which event types to display and which columns to show.
+  </Step>
+  <Step title="Repeat for additional panels">
+    Add more rows or panels as needed. Each panel is independently configured, so you can show different event filters side by side.
+  </Step>
+</Steps>
+
+---
+
+## Configuring widgets
+
+Each widget has its own configuration that is saved per dashboard.
+
+<AccordionGroup>
+  <Accordion title="Event filters (Feed and GameLog widgets)">
+    Both the Feed and GameLog widgets let you filter which event types appear in that panel. For example, you can create one panel that shows only **Online/Offline** events and another that shows only **GPS** (world join) events.
+
+    Open the widget header menu and toggle the event types you want to include or exclude.
+  </Accordion>
+  <Accordion title="Column visibility">
+    Each widget lets you show or hide individual columns — date, type, user, and detail. This is useful when screen space is limited or when a specific column is not relevant to the widget's purpose.
+
+    Open the column selector in the widget header to toggle columns on or off.
+  </Accordion>
+  <Accordion title="Multiple dashboards with different configurations">
+    Because each dashboard stores its own layout and widget configurations independently, you can have dashboards tailored to different use cases — for example, one dashboard focused on friend activity and another dedicated to game log monitoring.
+
+    Switch between dashboards using the tabs at the top of the dashboard view.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Tips
+
+<Note>
+  Dashboard layouts are saved automatically. Changes take effect immediately and persist across restarts.
+</Note>
+
+<Tip>
+  Place a Feed widget and a GameLog widget side by side in a horizontal row to monitor both friend activity and in-game events at the same time.
+</Tip>

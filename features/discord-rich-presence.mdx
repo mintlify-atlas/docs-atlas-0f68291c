@@ -1,0 +1,71 @@
+---
+title: "Discord Rich Presence"
+description: "Displays detailed VRChat session info in Discord — world thumbnail, world name, player count, and a join button for public lobbies."
+---
+
+When Discord Rich Presence is enabled, VRCX updates your Discord status with live information about your current VRChat session. Friends on Discord can see which world you are in, how many players are in your instance, and — for public instances — join you directly from the Discord profile.
+
+## What is shown
+
+<CardGroup cols={2}>
+  <Card title="World thumbnail" icon="image">
+    The world's cover image appears as the large asset in your Discord status.
+  </Card>
+  <Card title="World name" icon="globe">
+    The name of the current world is displayed as the primary detail line.
+  </Card>
+  <Card title="Player count" icon="users">
+    The number of players in your instance is shown as a party size indicator.
+  </Card>
+  <Card title="Join button" icon="arrow-right-to-bracket">
+    A **Join** button appears on public instances, letting Discord friends join your world directly.
+  </Card>
+</CardGroup>
+
+## Public vs. private instances
+
+The information VRCX shares in Discord varies based on instance type.
+
+| Instance type | World name | Player count | Join button |
+| ------------- | ---------- | ------------ | ----------- |
+| Public        | Shown       | Shown        | Shown       |
+| Friends+      | Shown       | Shown        | Not shown   |
+| Friends       | Shown       | Shown        | Not shown   |
+| Invite+       | Shown       | Shown        | Not shown   |
+| Invite        | Shown       | Shown        | Not shown   |
+| Not in world  | —           | —            | Not shown   |
+
+<Note>
+  The join button only appears for **public** instances. Private instances never expose a join link, regardless of Discord settings.
+</Note>
+
+## Enabling Discord Rich Presence
+
+<Steps>
+  <Step title="Open VRCX settings">
+    Click the gear icon or navigate to **Settings** in the VRCX menu bar.
+  </Step>
+  <Step title="Find Discord Rich Presence">
+    Look for the **Discord** or **Rich Presence** section in settings.
+  </Step>
+  <Step title="Toggle it on">
+    Enable the **Discord Rich Presence** option. VRCX connects to the Discord client immediately.
+  </Step>
+  <Step title="Verify in Discord">
+    Open your Discord profile. Your VRChat session details should appear within a few seconds once you are in a world.
+  </Step>
+</Steps>
+
+<Tip>
+  Discord must be running on the same machine as VRCX. Rich Presence communicates with the Discord desktop app over a local socket — it does not work with the browser version of Discord.
+</Tip>
+
+## Additional presence fields
+
+Beyond world and player data, VRCX also sets the following on your Discord status:
+
+- **Elapsed time** — how long you have been in the current session, shown as a timestamp
+- **Small image** — a secondary icon with supplementary text
+- **Status display type** — controls how Discord renders the activity (e.g., as "Playing" or "Watching")
+
+These fields update automatically every few seconds as your session changes.

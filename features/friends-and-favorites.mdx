@@ -1,0 +1,118 @@
+---
+title: "Friends and favorites"
+description: "View friend statuses, track friendship history, save notes, manage favorites for friends, worlds, and avatars, and visualize activity patterns with the heatmap."
+---
+
+The friends and favorites system is the social core of VRCX. It lets you manage your friends list outside of VRChat, keep records of shared history, and organize frequently accessed friends, worlds, and avatars into favorites for quick access.
+
+## Friend list
+
+The friend list shows every VRChat friend you have, with real-time data pulled from the VRChat API.
+
+<CardGroup cols={2}>
+  <Card title="Online status and location" icon="location-dot">
+    See whether each friend is online, active, or offline. When online, VRCX shows their current world and instance.
+  </Card>
+  <Card title="Current avatar" icon="user">
+    View the avatar a friend is wearing, including thumbnail and avatar name where available.
+  </Card>
+  <Card title="Friendship history" icon="clock-rotate-left">
+    Track when you became friends, total time spent together in instances, and any display name changes over time.
+  </Card>
+  <Card title="Notes and memos" icon="note-sticky">
+    Attach a private note to any friend — useful for recording how you met or other reminders only you can see.
+  </Card>
+</CardGroup>
+
+### Columns
+
+The friend list table includes the following columns, most of which can be shown or hidden:
+
+| Column | Description |
+|---|---|
+| No. | Friend number (order in which you became friends) |
+| Avatar | Small avatar thumbnail |
+| Display name | Friend's current VRChat display name |
+| Rank | VRChat trust level |
+| Status | Online status and status message |
+| Language | Language flags from the friend's profile |
+| Bio link | Clickable favicon links from the friend's bio |
+| Join count | Number of times you've been in the same instance |
+| Time together | Total time spent in the same instance |
+| Last seen | Date and time last seen online |
+| Mutual friends | Count of friends you share |
+| Last activity | Date of last recorded activity |
+| Last login | Date of last VRChat login |
+| Date joined | Date you became friends |
+
+<Tip>Click any column header to sort the list by that field. Click again to reverse the sort order.</Tip>
+
+---
+
+## Favorites
+
+Favorites let you pin friends, worlds, and avatars so they are always easy to find without searching.
+
+<CardGroup cols={3}>
+  <Card title="Favorite friends" icon="star">
+    Organize important friends into named groups. Favorited friends appear at the top of your friends list and are marked in the game log.
+  </Card>
+  <Card title="Favorite worlds" icon="earth-americas">
+    Save worlds you visit often or want to return to later. Browse them any time without needing to search.
+  </Card>
+  <Card title="Favorite avatars" icon="masks-theater">
+    Keep a collection of avatars for quick reference or to track down ones you like.
+  </Card>
+</CardGroup>
+
+<AccordionGroup>
+  <Accordion title="How to favorite a friend">
+    1. Open the friend list or find the friend in any VRCX view.
+    2. Right-click the friend's row to open the context menu.
+    3. Select **Add to favorites** and choose a favorite group.
+
+    Favorited friends display a star icon in the game log and appear grouped at the top of the friend list.
+  </Accordion>
+  <Accordion title="How to favorite a world or avatar">
+    1. Use search or browse to find the world or avatar.
+    2. Open its detail dialog.
+    3. Click **Add to favorites** and assign it to a group.
+
+    You can create multiple favorite groups to keep things organized — for example, separate groups for "social worlds" and "event worlds".
+  </Accordion>
+  <Accordion title="Exporting and importing favorites">
+    VRCX can export your favorite groups to a file and import them back. Go to **Settings** and look for the export/import options to back up or transfer your favorites.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Activity heatmap
+
+The activity heatmap visualizes when a friend is typically online using data recorded over time.
+
+The chart is a grid of **day of week** (rows) versus **hour of day** (columns). Each cell's intensity reflects how often the friend was seen online during that time slot. The heatmap also surfaces peak activity stats so you can see at a glance when someone is most active.
+
+<AccordionGroup>
+  <Accordion title="How to view a friend's heatmap">
+    1. Open the friend list and click a friend's row to open their profile dialog.
+    2. Select the **Activity** or **Heatmap** tab within the dialog.
+
+    The heatmap builds up over time as VRCX logs presence events, so friends you have tracked longer will show more complete patterns.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Friend log
+
+The friend log is a chronological record of events related to your friendships — all stored locally in VRCX's database.
+
+Events recorded in the friend log include:
+
+- Becoming friends with someone
+- Unfriending or being unfriended
+- Display name changes
+- Notes you have added or updated
+
+<Tip>The friend log is especially useful for tracking when you met someone or noticing when a friend changes their display name.</Tip>

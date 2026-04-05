@@ -1,0 +1,103 @@
+---
+title: "Architecture"
+description: "How VRCX's three-layer hybrid architecture fits together: Vue frontend, Electron main process, and .NET backend."
+---
+
+VRCX uses a three-layer hybrid architecture. A Vue 3 frontend renders the UI in an Electron renderer process, an Electron main process manages the application lifecycle and IPC, and a C#/.NET backend handles all data-intensive work.
+
+<Note>
+  The JS+C# split is intentional. The .NET layer gives VRCX access to native Windows APIs, OpenVR, and high-performance SQLite access, while the Vue layer provides a flexible, localizable UI that can be themed and extended without recompiling native code.
+</Note>
+
+## Layer 1: Frontend (Vue 3 + Vite)
+
+**Location:** `src/`
+
+The frontend is a standard single-page Vue 3 application bundled by Vite. Key subdirectories:
+
+| Directory | Purpose |
+|-----------|---------|
+| `src/views/` | Page-level Vue components, one per major screen |
+| `src/components/` | Reusable UI components |
+| `src/stores/` | Pinia state stores (friend list, settings, feed, etc.) |
+| `src/queries/` | TanStack Query definitions for async data fetching |
+| `src/composables/` | Shared Vue composables |
+| `src/ipc-electron/` | Helper wrappers around `window.electron` IPC calls |
+| `src/api/` | VRChat API request functions |
+| `src/localization/` | i18n translation files (vue-i18n) |
+
+The renderer communicates with the main process exclusively through the context bridge exposed in `src-electron/preload.js`. Direct Node.js or .NET access from the renderer is not permitted.
+
+## Layer 2: Electron main process
+
+**Location:** `src-electron/`
+
+The main process (`src-electron/main.js`) is the central coordinator of the application. It:
+
+- Creates and manages the `BrowserWindow` (main window) and any secondary windows
+- Loads the `.NET` backend assembly via `src-electron/InteropApi.js` using node-api-dotnet
+- Registers IPC handlers that proxy calls between the renderer and .NET
+- Manages the system tray icon and native notifications
+- Handles app lifecycle events (startup, quit, auto-updater)
+
+The preload script (`src-electron/preload.js`) uses Electron's `contextBridge` to expose a safe `window.electron` API to the renderer, keeping the renderer sandboxed.
+
+## Layer 3: .NET backend
+
+**Location:** `Dotnet/`
+
+The .NET backend is compiled as a class library and loaded at runtime by the Electron main process. It exposes its API surface through `Dotnet/AppApi/`, which node-api-dotnet marshals into JavaScript-callable functions.
+
+### Key subsystems
+
+| File / Directory | Responsibility |
+|-----------------|---------------|
+| `SQLite.cs` | SQLite database management — schema migrations, queries, bulk inserts |
+| `LogWatcher.cs` | Monitors the VRChat game log file and emits parsed events |
+| `ProcessMonitor.cs` | Watches the VRChat process; triggers auto-restart on crash |
+| `AutoAppLaunchManager.cs` | Launches configured companion apps when VRChat starts |
+| `ScreenshotMetadata/` | Embeds world and player data into VRChat PNG screenshots |
+| `Overlay/` | Renders the configurable VR overlay using OpenVR |
+| `OverlayWebSocket/` | WebSocket server that feeds live events to the overlay |
+| `Discord.cs` | Discord Rich Presence integration |
+| `WebApi.cs` | Internal HTTP API used by the overlay and other local consumers |
+| `Update.cs` | In-app update checking and download |
+
+## Communication flow
+
+```
+┌──────────────────────┐
+│   Vue 3 Renderer     │  (src/)
+│   Pinia · Vue Router │
+└─────────┬────────────┘
+          │  contextBridge (window.electron)
+          ▼
+┌──────────────────────┐
+│  Electron main.js    │  (src-electron/)
+│  IPC handlers        │
+└─────────┬────────────┘
+          │  node-api-dotnet
+          ▼
+┌──────────────────────┐
+│  .NET backend        │  (Dotnet/)
+│  SQLite · LogWatcher │
+│  OpenVR · Discord    │
+└──────────────────────┘
+```
+
+1. The Vue renderer calls `window.electron.ipcRenderer.invoke(channel, ...args)`.
+2. The Electron main process handles the IPC channel and delegates to the appropriate .NET method via node-api-dotnet.
+3. The .NET method executes (database query, API call, file write, etc.) and returns a result.
+4. The result propagates back through IPC to the renderer, where Pinia stores or TanStack Query caches update the UI.
+
+## Data storage
+
+All persistent data is stored in a single SQLite database file managed by `Dotnet/SQLite.cs`. The schema covers:
+
+- Friend activity and presence history
+- World and avatar metadata
+- Game log events
+- User notes and favorites
+- Application settings
+
+The database is designed to handle up to **8 GB** in size for users with large friend counts and long activity histories.

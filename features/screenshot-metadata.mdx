@@ -1,0 +1,60 @@
+---
+title: "Screenshot metadata"
+description: "VRCX automatically embeds world and location metadata into PNG screenshots taken in VRChat, so you always know where a photo was taken."
+---
+
+Every time you take a screenshot in VRChat, VRCX writes a custom PNG chunk to the image file containing structured JSON data about your session. This means the world name, world ID, instance, and the list of players present are permanently stored inside the photo itself — no separate sidecar file required.
+
+<Note>
+  Screenshot metadata is written automatically whenever VRCX is running. You do not need to configure anything for this to work.
+</Note>
+
+## What is stored
+
+Each screenshot receives a custom PNG chunk with the following data:
+
+| Field | Description |
+| ----- | ----------- |
+| `application` | Always `"VRCX"` — identifies the writing application |
+| `version` | Schema version number |
+| `author.id` | VRChat user ID of the person who took the screenshot |
+| `author.displayName` | Display name of the person who took the screenshot |
+| `world.id` | VRChat world ID |
+| `world.name` | Human-readable world name |
+| `world.instanceId` | Full instance ID of the session |
+| `players` | Array of all players present — each with their `id` and `displayName` |
+
+<Tip>
+  For the full JSON schema definition, see [Screenshot metadata schema](/development/screenshot-metadata-schema).
+</Tip>
+
+## Viewing screenshot metadata
+
+VRCX provides a built-in gallery viewer that reads and displays the embedded metadata for any screenshot taken while VRCX was running.
+
+<Steps>
+  <Step title="Open the Tools menu">
+    In the VRCX menu bar, click **Tools**.
+  </Step>
+  <Step title="Open the Gallery">
+    Select **Gallery** from the Tools menu.
+  </Step>
+  <Step title="Browse your screenshots">
+    The gallery lists your VRChat screenshots. Select any image to see its embedded metadata — world name, world ID, instance ID, and the players who were present.
+  </Step>
+</Steps>
+
+## How it works
+
+VRCX monitors for new PNG files written to your VRChat screenshots directory. When a new screenshot is detected, VRCX:
+
+1. Reads the current session state (world, instance, players)
+2. Serializes the data as JSON
+3. Writes it into a custom PNG chunk (`vrcx`) in the image file
+4. Stores a record in the local screenshot metadata database for fast gallery lookup
+
+The PNG file remains fully valid — the custom chunk is invisible to any standard image viewer, and the visual content of the screenshot is untouched.
+
+## Searching and filtering
+
+The gallery supports searching screenshots by player name (partial or exact, case-sensitive or case-insensitive) and by player ID. This makes it easy to find all screenshots that include a particular friend.
